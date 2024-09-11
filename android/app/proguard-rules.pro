@@ -5,6 +5,7 @@
 -keep class io.flutter.view.** { *; }
 -keep class io.flutter.** { *; }
 -keep class io.flutter.plugins.** { *; }
+-keep class com.hiennv.flutter_callkit_incoming.** { *; }
 
 # VoIP24h SDK
 -keep class com.voip24h.sdk.** { *; }

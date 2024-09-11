@@ -45,11 +45,11 @@ dependencies:
   animated_gradient:
   flutter_screenutil: ^5.9.3
   get:
-  firebase_core:
+  firebase_core: 
   firebase_auth:
   firebase_database:
-  cloud_firestore: ^4.17.2
-  firebase_messaging:
+  cloud_firestore: 
+  firebase_messaging: 
   flutter_local_notifications: ^17.2.2
 
 
@@ -91,6 +91,8 @@ dependencies:
 
   #Animated Icon
   animated_icon: 0.0.6
+  flutter_callkit_incoming: ^2.0.4+1
+  uuid: ^4.5.0
 
 
 dependency_overrides:
@@ -114,8 +116,12 @@ dev_dependencies:
 flutter_launcher_icons:
     android: "launcher_icon"
     ios: true
-    image_path: "assets/images/logo.png"
+    image_path: "assets/icons/logo.png"
+    adaptive_icon_background: "#42a5f5"
+    adaptive_icon_foreground: "assets/icons/logo.png"
 #    min_sdk_android: 21 # android min sdk 
+
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -131,6 +137,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+
+
+  
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

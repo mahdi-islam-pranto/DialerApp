@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_callkit_incoming/entities/entities.dart';
+import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 
 import '../dashboard/Dashboard.dart';
 import '../sip_account/SipAccountSetting.dart';
@@ -285,6 +288,56 @@ class _DrawerMenuState extends State<DrawerMenu> {
             //
             //  //     LogoutAPI(context).logout();
             //     }),
+
+            // call UI test
+
+            ListTile(
+              splashColor: Colors.blueGrey,
+              title: const Text("Incoming call UI test"),
+              leading: const Icon(
+                Icons.history,
+                color: Color.fromRGBO(246, 170, 170, 1.0),
+              ),
+              onTap: () async {
+                var uuid = const Uuid();
+                String _currentUuid = uuid.v4();
+                print("########_uuid: $_currentUuid");
+
+                CallKitParams callKitParams = CallKitParams(
+                    id: _currentUuid,
+                    nameCaller: 'Hien Nguyen',
+                    appName: 'Callkit',
+                    avatar: 'https://i.pravatar.cc/100',
+                    handle: '0123456789',
+                    type: 0,
+                    textAccept: 'Accept',
+                    textDecline: 'Decline',
+                    missedCallNotification: const NotificationParams(
+                      showNotification: true,
+                      isShowCallback: true,
+                      subtitle: 'Missed call',
+                      callbackText: 'Call back',
+                    ),
+                    duration: 30000,
+                    extra: <String, dynamic>{'userId': '1a2b3c4d'},
+                    headers: <String, dynamic>{
+                      'apiKey': 'Abc@123!',
+                      'platform': 'flutter'
+                    },
+                    android: const AndroidParams(
+                        isCustomNotification: true,
+                        isShowLogo: false,
+                        ringtonePath: 'system_ringtone_default',
+                        backgroundColor: '#0955fa',
+                        backgroundUrl: 'https://i.pravatar.cc/500',
+                        actionColor: '#4CAF50',
+                        textColor: '#ffffff',
+                        incomingCallNotificationChannelName: "Incoming Call",
+                        missedCallNotificationChannelName: "Missed Call",
+                        isShowCallID: false));
+                await FlutterCallkitIncoming.showCallkitIncoming(callKitParams);
+              },
+            ),
           ],
         ),
       ),

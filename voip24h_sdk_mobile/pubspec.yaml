@@ -21,6 +21,7 @@ dependencies:
   firebase_database:
   cloud_firestore: ^4.17.2
   firebase_messaging:
+  flutter_callkit_incoming:
 
 
 

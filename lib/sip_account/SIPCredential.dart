@@ -4,6 +4,8 @@ import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:simple_fontellico_progress_dialog/simple_fontico_loading.dart';
 import '../alert_dialog/CustomAlertDialg.dart';
 import '../constants/Constants.dart';
+import '../dashboard/Dashboard.dart';
+import '../dashboard/home_component/DashboardCounter.dart';
 import '../progress_indicator/CustomProgressIndicator.dart';
 import 'SIPConfiguration.dart';
 import 'SipAccountSetting.dart';
@@ -156,11 +158,10 @@ class SIPCredentialState extends State<SIPCredential> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                // Navigator.of(context).pop();
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const SipAccountSetting()));
+                        builder: (context) => const DashboardScreen()));
               },
               child: const Text('Ok'),
             ),

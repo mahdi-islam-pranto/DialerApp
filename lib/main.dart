@@ -21,18 +21,10 @@ import 'dashboard/Dashboard.dart';
 
 /// new
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
 
 void main() async {
   navigatorKey;
   WidgetsFlutterBinding.ensureInitialized();
-
-  // if(Platform.isAndroid) {
-  //   await Firebase.initializeApp();
-  //   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  // }
-  // localNotificationService.initialNotification();
 
   const AndroidInitializationSettings initializationSettingsAndroid =
       AndroidInitializationSettings('@mipmap/ic_launcher');
@@ -40,8 +32,6 @@ void main() async {
   final InitializationSettings initializationSettings = InitializationSettings(
     android: initializationSettingsAndroid,
   );
-
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
   HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
