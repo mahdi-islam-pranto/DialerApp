@@ -51,6 +51,7 @@ dependencies:
   cloud_firestore: 
   firebase_messaging: 
   flutter_local_notifications: ^17.2.2
+  internet_connection_checker_plus: ^1.0.1
 
 
 
@@ -118,7 +119,7 @@ flutter_launcher_icons:
     ios: true
     image_path: "assets/icons/logo.png"
     adaptive_icon_background: "#42a5f5"
-    adaptive_icon_foreground: "assets/icons/logo.png"
+    
 #    min_sdk_android: 21 # android min sdk 
 
 

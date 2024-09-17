@@ -6,6 +6,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'api/MyHttpOverrides.dart';
 import 'dashboard/Dashboard.dart';
 
@@ -13,9 +14,7 @@ import 'dashboard/Dashboard.dart';
 
   Activity name : Main activity
   Project name : iSalesCRM Mobile App
-  Developer : Sk Nayeem Ur Rahman
-  Designation : Senior Mobile App Developer at iHelpBD Dhaka, Bangladesh.
-  Email : nayeemdeveloperbd@gmail.com phone : 01733364274
+
 */
 //Launch Screen
 
@@ -61,6 +60,8 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   bool loginStatus = false;
+  InternetConnectionCheckerPlus internetConnectionCheckerPlus =
+      InternetConnectionCheckerPlus();
 
   @override
   initState() {
@@ -78,7 +79,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-//Show animated splash screen then redirect to UserLoginScreen
+//Show animated splash screen then redirect to User First Screen
   animatedIconShow() {
     return AnimatedSplashScreen(
         splash: Image.asset("assets/images/logo.png"),

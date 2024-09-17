@@ -307,6 +307,7 @@ class _CallUIState extends State<CallUI> {
                                     phoneNumber: "", callerName: "Unknown")));
                       } else {
                         Voip24hSdkMobile.callModule.hangup();
+                        Navigator.pop(context);
                       }
                     }),
               ),

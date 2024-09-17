@@ -7,13 +7,15 @@
 -keep class io.flutter.plugins.** { *; }
 -keep class com.hiennv.flutter_callkit_incoming.** { *; }
 
+
+
 # VoIP24h SDK
--keep class com.voip24h.sdk.** { *; }
+-keep class voip24h.sdk.mobile.voip24h_sdk_mobile.** { *; }
 
 # Your SIP-related classes
--keep class your.package.name.SIPConfiguration { *; }
--keep class your.package.name.SIPCredential { *; }
--keep class your.package.name.SipAccountStatus { *; }
+-keep class com.example.dialercall.SIPConfiguration { *; }
+-keep class com.example.dialercall.SIPCredential { *; }
+-keep class com.example.dialercall.SipAccountStatus { *; }
 
 # If you're using any external libraries for SIP, add rules for them here
 

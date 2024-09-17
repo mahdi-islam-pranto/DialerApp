@@ -1288,6 +1288,7 @@ import 'package:flutter_contacts/flutter_contacts.dart';
 
 import 'package:marquee/marquee.dart';
 
+import '../components/DrawMenu.dart';
 import '../constants/Constants.dart';
 import '../contacts/ContactsDetails.dart';
 import 'CallUI.dart';
@@ -1352,6 +1353,7 @@ class _SipDialPadState extends State<SipDialPad> {
       child: WillPopScope(
         onWillPop: onBackPressed,
         child: Scaffold(
+            drawer: const DrawerMenu(),
             appBar: AppBar(
               // New Changed
 
@@ -1443,7 +1445,7 @@ class _SipDialPadState extends State<SipDialPad> {
                   height: 60,
                   child: const Icon(Icons.dialpad, size: 30),
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       begin: Alignment.topCenter,
                       colors: [
                         Colors.blueAccent,
@@ -1521,14 +1523,14 @@ class _SipDialPadState extends State<SipDialPad> {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Colors.grey[200],
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: Column(
           children: [
             TextField(
               controller: digitsController,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30),
+              style: const TextStyle(fontSize: 30),
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -1538,7 +1540,7 @@ class _SipDialPadState extends State<SipDialPad> {
               ),
               readOnly: true,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             GridView.count(
               crossAxisCount: 3,
               shrinkWrap: true,
@@ -1552,7 +1554,7 @@ class _SipDialPadState extends State<SipDialPad> {
                 _buildDialButton('#'),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -1607,14 +1609,14 @@ class _SipDialPadState extends State<SipDialPad> {
                 color: Colors.grey.withOpacity(0.3),
                 spreadRadius: 1,
                 blurRadius: 5,
-                offset: Offset(0, 3),
+                offset: const Offset(0, 3),
               ),
             ],
           ),
           child: Center(
             child: Text(
               digit,
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
           ),
         ),
@@ -1640,7 +1642,7 @@ class _SipDialPadState extends State<SipDialPad> {
                 color: color.withOpacity(0.5),
                 spreadRadius: 2,
                 blurRadius: 8,
-                offset: Offset(0, 4),
+                offset: const Offset(0, 4),
               ),
             ],
           ),
@@ -1768,18 +1770,18 @@ class _SipDialPadState extends State<SipDialPad> {
                                     if (callLogsModel.type
                                         .toString()
                                         .contains("Missed"))
-                                      Icon(Icons.call_missed,
+                                      const Icon(Icons.call_missed,
                                           color: Colors.redAccent)
                                     else if (callLogsModel.type
                                         .toString()
                                         .contains("Incoming"))
-                                      Icon(
+                                      const Icon(
                                         Icons.call_received,
                                         color: Colors.grey,
                                         size: 10,
                                       )
                                     else
-                                      Icon(
+                                      const Icon(
                                         Icons.call_made_outlined,
                                         color: Colors.blue,
                                         size: 15,
@@ -1793,7 +1795,7 @@ class _SipDialPadState extends State<SipDialPad> {
                                       callLogsModel.date
                                           .toString()
                                           .indexOf(" ")),
-                                  style: TextStyle(fontSize: 11),
+                                  style: const TextStyle(fontSize: 11),
                                 )
                               ],
                             ),

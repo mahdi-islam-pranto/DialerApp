@@ -10,6 +10,7 @@ import '../dashboard/Dashboard.dart';
 import '../sip_account/SipAccountSetting.dart';
 import '../sip_account/SipDialPad.dart';
 import '/constants/constants.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 /*
   Component name : DrawMenu
@@ -69,10 +70,9 @@ class _DrawerMenuState extends State<DrawerMenu> {
                     width: 60.w,
                     height: 50.h,
                   ),
-                  SizedBox(
+                  const SizedBox(
                       child: Center(
-                    child: const Text(" Contact",
-                        style: TextStyle(letterSpacing: 1)),
+                    child: Text(" Contact", style: TextStyle(letterSpacing: 1)),
                   )),
                 ],
               ),
@@ -193,6 +193,59 @@ class _DrawerMenuState extends State<DrawerMenu> {
               },
             ),
 
+            // check internet connection
+
+            ListTile(
+              splashColor: Colors.blueGrey,
+              title: const Text("Check Internet"),
+              leading: const Icon(
+                Icons.wifi,
+                color: Color.fromRGBO(246, 170, 170, 1.0),
+              ),
+              onTap: () async {
+                InternetConnectionCheckerPlus.createInstance();
+                // check internet connection
+                InternetConnectionCheckerPlus();
+
+                if (await InternetConnectionCheckerPlus().hasConnection) {
+                  print("#################You are online##################");
+                  // show an alert dialog
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text("Internet Connection"),
+                      content: const Text("You are online"),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Ok'),
+                        ),
+                      ],
+                    ),
+                  );
+                } else {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text("Internet Connection"),
+                      content:
+                          const Text("You are Offline. No Internet Connection"),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: const Text('Ok'),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              },
+            ),
+
             //Show Deals page
             // ListTile(
             //     splashColor: Colors.blueGrey,
@@ -288,56 +341,6 @@ class _DrawerMenuState extends State<DrawerMenu> {
             //
             //  //     LogoutAPI(context).logout();
             //     }),
-
-            // call UI test
-
-            ListTile(
-              splashColor: Colors.blueGrey,
-              title: const Text("Incoming call UI test"),
-              leading: const Icon(
-                Icons.history,
-                color: Color.fromRGBO(246, 170, 170, 1.0),
-              ),
-              onTap: () async {
-                var uuid = const Uuid();
-                String _currentUuid = uuid.v4();
-                print("########_uuid: $_currentUuid");
-
-                CallKitParams callKitParams = CallKitParams(
-                    id: _currentUuid,
-                    nameCaller: 'Hien Nguyen',
-                    appName: 'Callkit',
-                    avatar: 'https://i.pravatar.cc/100',
-                    handle: '0123456789',
-                    type: 0,
-                    textAccept: 'Accept',
-                    textDecline: 'Decline',
-                    missedCallNotification: const NotificationParams(
-                      showNotification: true,
-                      isShowCallback: true,
-                      subtitle: 'Missed call',
-                      callbackText: 'Call back',
-                    ),
-                    duration: 30000,
-                    extra: <String, dynamic>{'userId': '1a2b3c4d'},
-                    headers: <String, dynamic>{
-                      'apiKey': 'Abc@123!',
-                      'platform': 'flutter'
-                    },
-                    android: const AndroidParams(
-                        isCustomNotification: true,
-                        isShowLogo: false,
-                        ringtonePath: 'system_ringtone_default',
-                        backgroundColor: '#0955fa',
-                        backgroundUrl: 'https://i.pravatar.cc/500',
-                        actionColor: '#4CAF50',
-                        textColor: '#ffffff',
-                        incomingCallNotificationChannelName: "Incoming Call",
-                        missedCallNotificationChannelName: "Missed Call",
-                        isShowCallID: false));
-                await FlutterCallkitIncoming.showCallkitIncoming(callKitParams);
-              },
-            ),
           ],
         ),
       ),

@@ -105,7 +105,7 @@ class SIPCredentialState extends State<SIPCredential> {
                   selectedTextColor: Colors.blue,
                   transitionType: TransitionType.LEFT_TO_RIGHT,
                   backgroundColor:
-                      Color.fromRGBO(106, 129, 224, 0.4470588235294118),
+                      const Color.fromRGBO(106, 129, 224, 0.4470588235294118),
                   borderRadius: 15,
                   borderWidth: 2,
                   onPress: () async {
@@ -154,7 +154,7 @@ class SIPCredentialState extends State<SIPCredential> {
         builder: (context) => AlertDialog(
           title: const Text("Server message"),
           content: Text(serverMessage,
-              style: TextStyle(fontSize: 16, color: Colors.green)),
+              style: const TextStyle(fontSize: 16, color: Colors.green)),
           actions: <Widget>[
             TextButton(
               onPressed: () {
@@ -174,7 +174,7 @@ class SIPCredentialState extends State<SIPCredential> {
         builder: (context) => AlertDialog(
           title: const Text("Server message"),
           content: Text(serverMessage,
-              style: TextStyle(fontSize: 16, color: Colors.redAccent)),
+              style: const TextStyle(fontSize: 16, color: Colors.redAccent)),
           actions: <Widget>[
             TextButton(
               onPressed: () {
