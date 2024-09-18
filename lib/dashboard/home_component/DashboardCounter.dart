@@ -4,11 +4,7 @@ import '../../sip_account/SipDialPad.dart';
 
 /*
   Activity name : DashboardCounter
-  Project name : iSalesCRM Mobile App
-  Developer : Eng. Sk Nayeem Ur Rahman
-  Designation : Senior Mobile App Developer at iHelpBD Dhaka, Bangladesh.
-  Email : mazedulislam4970@gmail.com
-
+  Project name : iSalesCRM Mobile Appb
   Description : This DashboardCounter provides the all activities total of CRM
 */
 

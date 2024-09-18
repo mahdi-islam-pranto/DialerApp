@@ -1604,14 +1604,7 @@ class _SipDialPadState extends State<SipDialPad> {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.3),
-                spreadRadius: 1,
-                blurRadius: 5,
-                offset: const Offset(0, 3),
-              ),
-            ],
+            boxShadow: [],
           ),
           child: Center(
             child: Text(
@@ -1630,6 +1623,12 @@ class _SipDialPadState extends State<SipDialPad> {
       color: color,
       borderRadius: BorderRadius.circular(30),
       child: InkWell(
+        onLongPress: () {
+          setState(() {
+            numberDigits.clear();
+            setDigitInList();
+          });
+        },
         onTap: onPressed,
         borderRadius: BorderRadius.circular(30),
         child: Container(
@@ -1637,14 +1636,7 @@ class _SipDialPadState extends State<SipDialPad> {
           height: 60,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            boxShadow: [
-              BoxShadow(
-                color: color.withOpacity(0.5),
-                spreadRadius: 2,
-                blurRadius: 8,
-                offset: const Offset(0, 4),
-              ),
-            ],
+            boxShadow: [],
           ),
           child: Icon(icon, color: Colors.white, size: 30),
         ),

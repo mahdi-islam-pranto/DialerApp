@@ -61,14 +61,15 @@ class _CallLogDetailsState extends State<CallLogDetails> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(widget.contactName,
-                style: TextStyle(fontWeight: FontWeight.normal)),
+                style: const TextStyle(fontWeight: FontWeight.normal)),
             Text("Mobile. ${widget.contactNumber}",
-                style: TextStyle(fontWeight: FontWeight.normal, fontSize: 13))
+                style: const TextStyle(
+                    fontWeight: FontWeight.normal, fontSize: 13))
           ],
         ),
         actions: [
           IconButton(
-              icon: Icon(Icons.delete_rounded),
+              icon: const Icon(Icons.delete_rounded),
               onPressed: () async {
                 await showDialog(
                   context: context,
@@ -165,13 +166,14 @@ class _CallLogDetailsState extends State<CallLogDetails> {
   Widget getCallTypeIcon(String type) {
     switch (type) {
       case "Missed":
-        return Icon(Icons.call_missed, color: Colors.redAccent, size: 20);
+        return const Icon(Icons.call_missed, color: Colors.redAccent, size: 20);
 
       case "Outgoing":
-        return Icon(Icons.call_made_outlined, color: Colors.grey, size: 20);
+        return const Icon(Icons.call_made_outlined,
+            color: Colors.grey, size: 20);
 
       default:
-        return Icon(Icons.call_received, color: Colors.grey, size: 20);
+        return const Icon(Icons.call_received, color: Colors.grey, size: 20);
     }
   }
 }
