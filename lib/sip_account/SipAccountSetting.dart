@@ -72,7 +72,7 @@ class _SipAccountSettingState extends State<SipAccountSetting> {
       body: Container(
         margin: const EdgeInsets.only(top: 10),
         child: ListView(
-          children: [extensionAndStatus(), dialerPrefix()],
+          children: [extensionAndStatus()],
         ),
       ),
     );

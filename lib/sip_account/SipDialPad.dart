@@ -1314,7 +1314,7 @@ class _SipDialPadState extends State<SipDialPad> {
   List<String> numberDigits = [];
   int cursorCurrentIndex = 0;
 
-  bool isDialPadShowing = false;
+  bool isDialPadShowing = true;
   String? callerName;
 
   /*
@@ -1363,9 +1363,9 @@ class _SipDialPadState extends State<SipDialPad> {
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                       colors: [
-                        Colors.blueAccent,
-                        Colors.blueAccent,
-                        Colors.redAccent,
+                        Colors.blue,
+                        Colors.blue,
+                        Color(0xff85C1E9),
                       ]),
                 ),
               ),
@@ -1448,9 +1448,8 @@ class _SipDialPadState extends State<SipDialPad> {
                     gradient: const LinearGradient(
                       begin: Alignment.topCenter,
                       colors: [
-                        Colors.blueAccent,
-                        Colors.blueAccent,
-                        Colors.redAccent,
+                        Colors.blue,
+                        Color(0xff85C1E9),
                       ],
                     ),
                     borderRadius: BorderRadius.circular(20),
@@ -1585,6 +1584,13 @@ class _SipDialPadState extends State<SipDialPad> {
                                   callerName: name,
                                 )));
                   }
+                }),
+
+                // close
+                _buildActionButton(Icons.close, Colors.grey, () {
+                  setState(() {
+                    isDialPadShowing = false;
+                  });
                 }),
               ],
             ),

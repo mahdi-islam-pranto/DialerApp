@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 import '../../sip_account/SipDialPad.dart';
 
@@ -20,6 +21,27 @@ class _DashboardCounterState extends State<DashboardCounter> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    internetCon();
+  }
+
+  var internetStatus = "";
+
+  internetCon() async {
+    InternetConnectionCheckerPlus.createInstance();
+    // check internet connection
+    InternetConnectionCheckerPlus();
+
+    if (await InternetConnectionCheckerPlus().hasConnection) {
+      setState(() {
+        internetStatus = "Online";
+      });
+      print("Connected");
+    } else {
+      setState(() {
+        internetStatus = "Offline";
+      });
+      print("Not Connected");
+    }
   }
 
   @override
@@ -27,6 +49,9 @@ class _DashboardCounterState extends State<DashboardCounter> {
     final mediaQuery = MediaQuery.of(context);
     final screenWidth = mediaQuery.size.width;
     final screenHeight = mediaQuery.size.height;
+
+// internet connection
+    var internet = "";
 
     return Scaffold(
       body: Container(
@@ -36,12 +61,16 @@ class _DashboardCounterState extends State<DashboardCounter> {
             begin: Alignment.topCenter,
             colors: [
               Colors.blue,
-              Colors.blueAccent,
-              Colors.redAccent,
+              Colors.blue,
+              Color(0xff85C1E9),
             ],
           ),
         ),
         child: Column(
+          // internet instance
+
+          // check internet connection
+
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -63,7 +92,7 @@ class _DashboardCounterState extends State<DashboardCounter> {
                   "Contact",
                   style: TextStyle(
                       fontSize: screenWidth * 0.07,
-                      color: Colors.black,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold),
                 ),
               ],
@@ -76,11 +105,42 @@ class _DashboardCounterState extends State<DashboardCounter> {
                 "assets/images/person.png",
                 height: screenHeight * 0.1,
                 fit: BoxFit.cover,
-                color: const Color.fromRGBO(210, 206, 206, 1.0),
+                color: Color.fromRGBO(210, 206, 206, 1.0),
               ),
             ),
+            SizedBox(height: screenHeight * 0.03),
 
-            SizedBox(height: screenHeight * 0.5),
+            Text(
+              "Welcome To ",
+              style:
+                  TextStyle(fontSize: screenWidth * 0.06, color: Colors.white),
+            ),
+            Image.asset(
+              "assets/images/skrp.png",
+              height: screenWidth * 0.1,
+              width: screenWidth * 0.3,
+              fit: BoxFit.fill,
+            ),
+
+            SizedBox(height: screenHeight * 0.4),
+
+            // internet status text show
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Internet Status : ",
+                  style: TextStyle(
+                      fontSize: screenWidth * 0.04, color: Colors.white),
+                ),
+                Text(
+                  internetStatus,
+                  style: TextStyle(
+                      fontSize: screenWidth * 0.04, color: Colors.black),
+                ),
+              ],
+            ),
+
             // button
             Expanded(
               child: Material(
@@ -91,8 +151,7 @@ class _DashboardCounterState extends State<DashboardCounter> {
                       context,
                       PageRouteBuilder(
                         pageBuilder: (context, animation, secondaryAnimation) =>
-                            const SipDialPad(
-                                phoneNumber: "", callerName: "unknown"),
+                            SipDialPad(phoneNumber: "", callerName: "unknown"),
                         transitionsBuilder:
                             (context, animation, secondaryAnimation, child) {
                           const begin = Offset(1.0, 0.0);
@@ -104,7 +163,7 @@ class _DashboardCounterState extends State<DashboardCounter> {
                           return SlideTransition(
                               position: offsetAnimation, child: child);
                         },
-                        transitionDuration: const Duration(milliseconds: 100),
+                        transitionDuration: Duration(milliseconds: 100),
                       ),
                     );
                   },
@@ -112,7 +171,7 @@ class _DashboardCounterState extends State<DashboardCounter> {
                     height: screenHeight * 0.25,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 0.9, color: Colors.black),
+                      border: Border.all(width: 0.9, color: Colors.blue),
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(screenWidth * 0.1),
@@ -123,8 +182,7 @@ class _DashboardCounterState extends State<DashboardCounter> {
                           color: Colors.black.withOpacity(0.2),
                           spreadRadius: 5,
                           blurRadius: 10,
-                          offset:
-                              const Offset(0, 3), // changes position of shadow
+                          offset: Offset(0, 3), // changes position of shadow
                         ),
                       ],
                     ),
@@ -146,7 +204,7 @@ class _DashboardCounterState extends State<DashboardCounter> {
                                 PageRouteBuilder(
                                   pageBuilder: (context, animation,
                                           secondaryAnimation) =>
-                                      const SipDialPad(
+                                      SipDialPad(
                                           phoneNumber: "",
                                           callerName: "unknown"),
                                   transitionsBuilder: (context, animation,
@@ -163,11 +221,11 @@ class _DashboardCounterState extends State<DashboardCounter> {
                                         child: child);
                                   },
                                   transitionDuration:
-                                      const Duration(milliseconds: 100),
+                                      Duration(milliseconds: 100),
                                 ),
                               );
                             },
-                            icon: const Icon(
+                            icon: Icon(
                                 size: 50, Icons.arrow_circle_right_rounded))
                       ],
                     ),

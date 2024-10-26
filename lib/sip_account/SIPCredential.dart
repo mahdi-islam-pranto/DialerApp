@@ -1,3 +1,4 @@
+import 'package:dialercall/sip_account/SipDialPad.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
@@ -21,7 +22,8 @@ class SIPCredential extends StatefulWidget {
 // Make the state class public by renaming it
 class SIPCredentialState extends State<SIPCredential> {
   TextEditingController sipID = TextEditingController();
-  TextEditingController sipDomain = TextEditingController();
+  TextEditingController sipDomain =
+      TextEditingController(text: "a04.ihelpbd.com:25067");
   TextEditingController sipPassword = TextEditingController();
   String serverMessage = '';
 
@@ -71,17 +73,6 @@ class SIPCredentialState extends State<SIPCredential> {
             Card(
               elevation: 0.5,
               child: TextField(
-                  controller: sipDomain,
-                  maxLines: 1,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: "SIP Server",
-                      hintText: "sip host")),
-            ),
-            const SizedBox(height: 20),
-            Card(
-              elevation: 0.5,
-              child: TextField(
                   controller: sipPassword,
                   obscureText: true,
                   maxLines: 1,
@@ -89,6 +80,17 @@ class SIPCredentialState extends State<SIPCredential> {
                       border: OutlineInputBorder(),
                       labelText: "Password",
                       hintText: "eg. @e#%wsfh")),
+            ),
+            const SizedBox(height: 20),
+            Card(
+              elevation: 0.5,
+              child: TextField(
+                  controller: sipDomain,
+                  maxLines: 1,
+                  decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "SIP Server",
+                      hintText: "sip host")),
             ),
             const SizedBox(height: 45),
             Center(
@@ -161,7 +163,10 @@ class SIPCredentialState extends State<SIPCredential> {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const DashboardScreen()));
+                        builder: (context) => const SipDialPad(
+                              phoneNumber: '',
+                              callerName: '',
+                            )));
               },
               child: const Text('Ok'),
             ),
